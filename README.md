@@ -1,6 +1,6 @@
-# Love2D Scalable Emoji Renderer
+# Luamoji (Love2D Emoji Renderer)
 
-A scalable, file-based emoji rendering library for LÖVE (Love2D). 
+A scalable, file-based emoji rendering library for LÖVE (Love2D).
 It lazily loads emoji images from a folder, allowing you to use high-quality emoji packs (like Twemoji) without managing massive spritesheets.
 
 ## Features
@@ -9,19 +9,19 @@ It lazily loads emoji images from a folder, allowing you to use high-quality emo
 - **Text Wrapping**: Full `printf` support for mixed text and emojis.
 - **Utf-8 Support**: Works with standard Lua strings containing emoji characters.
 
-## 📦 Installation Guide
+## 📦 Installation
 
-To use this in your Love2D game, follow these steps:
+### Option 1: LuaRocks (Recommended)
+The easiest way to install Luamoji is via LuaRocks:
 
-### 1. Copy the Library
-Copy the `emoji_renderer.lua` file into your project folder.
+```bash
+luarocks install luamoji
+```
 
-### 2. Add Emoji Assets
-Create a folder named `emojis` in your project's directory.
-Inside this folder, you need to place individual PNG images for each emoji you want to support.
-- Files **must** be named using the lowercase Unicode hexadecimal value.
-- Example: 🚀 is `1f680.png`.
-- Example: 🍎 is `1f34e.png`.
+### Option 2: Manual Installation
+1. Copy the `luamoji.lua` file into your project folder.
+2. Create an `emojis` folder in your project's directory.
+3. Add emoji images (e.g., `1f600.png`) to that folder.
 
 > **Tip:** You can download the full set of **Twemoji 72x72** icons directly.
 > 1. Go to the [Twemoji Repo](https://github.com/twitter/twemoji/tree/master/assets/72x72).
@@ -34,14 +34,15 @@ Inside this folder, you need to place individual PNG images for each emoji you w
 In your `main.lua`:
 
 ```lua
-local EmojiRenderer = require("emoji_renderer")
+local Luamoji = require("luamoji")
 local renderer
 
 function love.load()
     -- Create the renderer
-    renderer = EmojiRenderer.new()
+    renderer = Luamoji.new()
     
-    -- Tell it where to find your emoji images
+    -- Tell it where to find your emoji images (if manually installed)
+    -- If using LuaRocks, it tries to find them automatically, or you can specify:
     renderer:setEmojiDirectory("emojis")
 end
 ```
@@ -74,7 +75,7 @@ renderer:printf("This is a long string with mixed emojis 🍎 that will wrap nic
 
 ## 🛠️ API Reference
 
-- `renderer = EmojiRenderer.new()`: Creates a new instance.
+- `renderer = Luamoji.new()`: Creates a new instance.
 - `renderer:setEmojiDirectory(path)`: Sets the folder path (e.g., "assets/emojis").
 - `renderer:setEmojiSize(size)`: Manually sets the base size if not autodetected (default 32).
 - `renderer:print(text, x, y)`: Draws text with emojis.
