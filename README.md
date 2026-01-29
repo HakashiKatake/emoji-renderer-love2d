@@ -11,17 +11,40 @@ It lazily loads emoji images from a folder, allowing you to use high-quality emo
 
 ## 📦 Installation
 
-### Option 1: LuaRocks (Recommended)
-The easiest way to install Luamoji is via LuaRocks:
+### Method 1: Local Copy (Simplest & Best for Distribution)
+1. Download the latest **[Release Zip](https://github.com/HakashiKatake/emoji-renderer-love2d/releases)** or `luamoji_release.zip`.
+2. Extract it into your game's folder.
+3. Your folder should look like this:
+   ```text
+   my_game/
+   ├── main.lua
+   ├── luamoji.lua
+   └── emojis/ (folder containing images)
+   ```
 
-```bash
-luarocks install luamoji
-```
+### Method 2: LuaRocks (For Advanced Users)
+Since Love2D is sandboxed, you must install the rock **locally into your project folder** (vendoring).
 
-### Option 2: Manual Installation
-1. Copy the `luamoji.lua` file into your project folder.
-2. Create an `emojis` folder in your project's directory.
-3. Add emoji images (e.g., `1f600.png`) to that folder.
+1. In your project terminal, run:
+   ```bash
+   luarocks install --tree lua_modules luamoji
+   ```
+   *(This creates a `lua_modules` folder inside your project)*
+
+2. Configure your `main.lua` to find it:
+   ```lua
+   -- Add the local tree to the package path
+   package.path = "lua_modules/share/lua/5.1/?.lua;" .. package.path
+
+   local Luamoji = require("luamoji")
+   ```
+
+3. Be sure to point to the correct emoji directory inside that tree:
+   ```lua
+   local renderer = Luamoji.new()
+   -- Point to the emojis installed by LuaRocks
+   renderer:setEmojiDirectory("lua_modules/lib/luarocks/rocks-5.1/luamoji/1.0-4/emojis")
+   ```
 
 > **Tip:** You can download the full set of **Twemoji 72x72** icons directly.
 > 1. Go to the [Twemoji Repo](https://github.com/twitter/twemoji/tree/master/assets/72x72).
