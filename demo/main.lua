@@ -1,4 +1,4 @@
-local EmojiRenderer = require("emoji_renderer")
+local EmojiRenderer = require("luamoji")
 
 local renderer
 local font
