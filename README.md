@@ -3,6 +3,13 @@
 A scalable, file-based emoji rendering library for LÖVE (Love2D).
 It lazily loads emoji images from a folder, allowing you to use high-quality emoji packs (like Twemoji) without managing massive spritesheets.
 
+## ☕ Support
+
+If you find this library useful, please consider supporting me and my studio **StopwatchGames**!  
+Your sponsorship helps fund my upcoming games. 🎮
+
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/stopwatchgames)
+
 ## Features
 - **File-based Lazy Loading**: Only loads the emojis you actually use.
 - **Auto-Scaling**: Emojis automatically resize to match your font height.
@@ -107,3 +114,7 @@ renderer:printf("This is a long string with mixed emojis 🍎 that will wrap nic
 
 ## License
 MIT
+
+---
+
+
